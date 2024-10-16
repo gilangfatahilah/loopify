@@ -1,10 +1,11 @@
+import Header from '@/components/dashboard/Header'
 import React from 'react'
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
   return (
-    <div>Dashboard</div>
+    <Header />
   )
 }
 

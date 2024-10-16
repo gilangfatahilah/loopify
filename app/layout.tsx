@@ -4,9 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const outfit = Outfit({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
-  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${outfit.variable} antialiased`}
+          className={`${outfit.className} antialiased`}
         >
           {children}
         </body>
