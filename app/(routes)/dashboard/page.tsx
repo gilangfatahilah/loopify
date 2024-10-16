@@ -1,11 +1,14 @@
 import Header from '@/components/dashboard/Header'
+import WorkspaceList from '@/components/dashboard/WorkspaceList'
 import React from 'react'
 
-type Props = {}
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   return (
-    <Header />
+    <>
+      <Header />
+
+      <WorkspaceList />
+    </>
   )
 }
 

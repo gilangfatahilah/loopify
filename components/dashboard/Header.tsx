@@ -3,9 +3,7 @@ import { OrganizationSwitcher, useAuth, UserButton } from '@clerk/nextjs'
 import Logo from '../shared/Logo'
 import React from 'react'
 
-type Props = {}
-
-const Header = (props: Props) => {
+const Header = () => {
   const { orgId } = useAuth();
 
   return (

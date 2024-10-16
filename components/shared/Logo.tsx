@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-type Props = {}
-
-const Logo = (props: Props) => {
+const Logo = () => {
   return (
     <div className='flex items-center gap-2'>
       <Image src={'/logo.svg'} alt='logo' width={30} height={30} />
