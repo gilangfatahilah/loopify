@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { toast } from 'sonner';
+import uuid4 from 'uuid4'
 
 const page = () => {
   const router = useRouter()
@@ -27,6 +28,8 @@ const page = () => {
       setLoading(true)
 
       const workspaceId = Date.now();
+      const docId = uuid4();
+
       await setDoc(doc(db, 'Workspace', workspaceId.toString()), {
         workspaceName: workspaceName,
         emoji: emoji,
@@ -36,8 +39,23 @@ const page = () => {
         orgId: orgId ? orgId : user?.primaryEmailAddress?.emailAddress
       });
 
+      await setDoc(doc(db, 'workspaceDocuments', docId.toString()), {
+        workspaceId: workspaceId,
+        createdBy: user?.primaryEmailAddress?.emailAddress,
+        coverImage: null,
+        emoji: null,
+        id: docId,
+        documentName: 'Untitled Document',
+        documentOutput: []
+      })
+
+      await setDoc(doc(db, 'documentOutput', docId.toString()), {
+        docId: docId,
+        output: []
+      })
+
       toast.success('Successfully created workspace!')
-      router.replace(`/workspace/${workspaceId}`);
+      router.replace(`/workspace/${workspaceId}/${docId}`);
     } catch (error) {
       console.log(error)
       toast.error('Unexpected error occurred!')
