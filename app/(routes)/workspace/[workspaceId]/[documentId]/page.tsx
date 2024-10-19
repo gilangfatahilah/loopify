@@ -1,3 +1,4 @@
+import DocumentEditor from '@/components/workspace/DocumentEditor'
 import SideNav from '@/components/workspace/SideNav'
 import React from 'react'
 
@@ -10,9 +11,7 @@ const WorkspaceDocumentPage = ({ params }: { params: { documentId: string, works
       </div>
 
       <div className='ml-72'>
-        <pre>
-          {`${params.documentId}, - ${params.workspaceId}`}
-        </pre>
+        <DocumentEditor params={params} />
       </div>
     </div>
   )

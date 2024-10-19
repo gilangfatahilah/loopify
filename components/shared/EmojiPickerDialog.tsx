@@ -3,9 +3,10 @@ import EmojiPicker from 'emoji-picker-react'
 
 type Props = React.PropsWithChildren<{
   setEmoji: Dispatch<SetStateAction<string>>
+  onEmojiChange?: (emoji: string) => void
 }>
 
-const EmojiPickerDialog = ({ children, setEmoji }: Props) => {
+const EmojiPickerDialog = ({ children, setEmoji, onEmojiChange }: Props) => {
   const [openEmojiPicker, setEmojiPicker] = React.useState<boolean>(false)
 
   return (
@@ -19,6 +20,9 @@ const EmojiPickerDialog = ({ children, setEmoji }: Props) => {
             <EmojiPicker
               open={openEmojiPicker}
               onEmojiClick={(e) => {
+                if (onEmojiChange) {
+                  onEmojiChange(e.emoji);
+                }
                 setEmoji(e.emoji)
                 setEmojiPicker(false)
               }}

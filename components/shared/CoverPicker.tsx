@@ -16,10 +16,11 @@ import { cn } from '@/lib/utils';
 
 type Props = React.PropsWithChildren<{
   setCoverImage: Dispatch<SetStateAction<string>>
+  onCoverChange?: (cover: string) => void
 }>
 
 const CoverPicker = ({
-  children, setCoverImage
+  children, setCoverImage, onCoverChange
 }: Props) => {
   const [selectedImage, setSelectedImage] = React.useState<string>('');
 
@@ -34,7 +35,9 @@ const CoverPicker = ({
           <DialogDescription>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3'>
               {CoverOptions.map((cover, index) => {
-                return (<div key={index} onClick={() => setSelectedImage(cover.imageUrl)}
+                return (<div key={index} onClick={() => {
+                  setSelectedImage(cover.imageUrl)
+                }}
                   className={cn('p-1 rounded-md', {
                     'border-primary border-2': selectedImage === cover.imageUrl
                   })}>
@@ -51,7 +54,12 @@ const CoverPicker = ({
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button disabled={!selectedImage} type="button" onClick={() => setCoverImage(selectedImage)}>
+            <Button disabled={!selectedImage} type="button" onClick={() => {
+              if (onCoverChange) {
+                onCoverChange(selectedImage);
+              }
+              setCoverImage(selectedImage)
+            }}>
               Update
             </Button>
           </DialogClose>
