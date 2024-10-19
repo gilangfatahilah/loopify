@@ -1,6 +1,7 @@
 import React from 'react'
 import DocumentHeader from './DocumentHeader'
 import DocumentInfo from './DocumentInfo'
+import RichTextEditor from './RichTextEditor'
 
 const DocumentEditor = ({ params }: { params: { workspaceId: string, documentId: string } }) => {
 
@@ -8,6 +9,7 @@ const DocumentEditor = ({ params }: { params: { workspaceId: string, documentId:
     <div>
       <DocumentHeader />
       <DocumentInfo params={params} />
+      <RichTextEditor params={params} />
     </div>
   )
 }
